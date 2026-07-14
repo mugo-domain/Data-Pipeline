@@ -8,10 +8,10 @@ from google_play_scraper import reviews, Sort
 # ==========================================
 # 1. CONFIGURATION & DATABASE CONNECTION
 # ==========================================
-USER = "root"
-PASSWORD = "mugo" 
-HOST = "127.0.0.1"               
-PORT = "3306"                    
+USER = "" #your sql server credentials here
+PASSWORD = "" 
+HOST = ""               
+PORT = ""                    
 DATABASE = "safaricom_analytics" 
 
 DATABASE_URL = f"mysql+pymysql://{USER}:{PASSWORD}@{HOST}:{PORT}/{DATABASE}"
