@@ -11,13 +11,12 @@ An automated, end-to-end pipeline for scraping Google Play Store reviews, runnin
 3. [Tech Stack](#tech-stack)
 4. [Project Structure](#project-structure)
 5. [Setup & Installation](#setup--installation)
-6. [Configuration](#configuration)
-7. [Running the Pipeline](#running-the-pipeline)
-8. [Model Details](#model-details)
-9. [Database Schema](#database-schema)
-10. [Power BI Dashboard](#power-bi-dashboard)
-11. [Adapting to a Different App](#adapting-to-a-different-app)
-12. [Results](#results)
+6. [Running the Pipeline](#running-the-pipeline)
+7. [Model Details](#model-details)
+8. [Database Schema](#database-schema)
+9. [Power BI Dashboard](#power-bi-dashboard)
+10. [Adapting to a Different App](#adapting-to-a-different-app)
+11. [Results](#results)
 
 ---
 
@@ -144,31 +143,10 @@ python-dotenv
 
 ---
 
-## Configuration
-
-All settings live in `config.py` — edit this file to point the pipeline at a different app or database.
-
-```python
-# config.py
-
-# ── App ──────────────────────────────────────────────────────────────────────
-APP_ID     = "com.safaricom.myone"   # Change this to any Play Store app ID
-APP_LANG   = "en"
-APP_COUNTRY = "ke"
-REVIEWS_PER_RUN = 500                # How many reviews to pull each run
-
-# ── Database ──────────────────────────────────────────────────────────────────
-DB_HOST = "localhost"
-DB_NAME = "sentiment_db"
-DB_USER = "root"
-DB_PASSWORD = ""   
-
 # ── Model Paths ───────────────────────────────────────────────────────────────
 WORD2VEC_PATH = "models/word2vec.model"
 LGBM_PATH     = "models/lgbm_sentiment.pkl"
 ```
-
-Store your DB password in a `.env` file and load it with `python-dotenv`.
 
 ---
 
@@ -263,7 +241,7 @@ Suggested visuals:
 
 ## Adapting to a Different App
 
-1. Update `APP_ID` in `config.py` to the target app's Play Store package name.
+1. Update `APP_ID` to the target app's Play Store package name.
    - Example: `com.instagram.android`, `com.kopo.android`, `com.equitybank.android`
 2. Run the scraper to collect reviews.
 3. Retrain Word2Vec and LightGBM using the new corpus (`notebooks/02` and `03`).
@@ -281,7 +259,7 @@ Validated on Safaricom MyOne App reviews:
 | Metric | Value |
 |---|---|
 | Cross-validated macro F1 | ≈ 0.90 |
-| Classes | Positive, Negative, Neutral |
+| Classes | Positive, Negative|
 | Pipeline frequency | Weekly automated run |
 | Dashboard metric | % Positive sentiment (DAX) |
 
